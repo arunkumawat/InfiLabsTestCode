@@ -30,7 +30,7 @@
 #### Step 1
 create new angular cli project using command- 
 
-		ng new InfiLabsTestCode
+	ng new InfiLabsTestCode
 
 
 #### Step 2
@@ -47,7 +47,7 @@ install dependent modules which is used in this application. we need -
 	3  ngx-pagination	https://www.npmjs.com/package/ngx-pagination
 	4  font-awesome		https://www.npmjs.com/package/angular-font-awesome
 
-
+####NOTE:
 install seperate using npm install command,
 Or all at once using following command -  
 
