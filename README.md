@@ -29,14 +29,14 @@ Or all at once using following command -  **npm install bootstrap ngx-bootstrap 
 #### Step 4
 update angular.json with bootstrap.min.css and font-awesome.css like - 
 
-		"architect": {
+	"architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
 			"styles": [
-				**"node_modules/bootstrap/dist/css/bootstrap.min.css",**
+				"node_modules/bootstrap/dist/css/bootstrap.min.css",
 				"src/styles.css",
-				**"node_modules/font-awesome/css/font-awesome.css"**
+				"node_modules/font-awesome/css/font-awesome.css"
 			]
 			...
 			...
