@@ -1,0 +1,168 @@
+
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-5">
+      <label for="ahdevicename">Host Name:</label>
+      <input type="text" class="form-control" [(ngModel)]="device.name" name="ahdevicename" id="ahdevicename" required> </div>
+    <div class="form-group col-md-5">
+      <label for="ahloopBack">LoopBack:</label>
+      <input type="text" class="form-control" [(ngModel)]="device.loopBack" name="ahloopBack" required>
+    </div>
+    <div class="form-group col-md-2" style="padding-top: 32px;">
+      <button class="btn btn-primary" (click)="addUpdateDevice(device)" title="Add Device">Add Device</button>
+    </div>
+  </div>
+</form>
+<div *ngIf="deviceList.length > 0">
+  <h5>Device List</h5>
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col">SR No</th>
+        <th scope="col">HostName</th>
+        <th scope="col">LoopBack</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let h of deviceList| paginate: { itemsPerPage: 3, currentPage: p }">
+        <th scope="row">{{h.id}}</th>
+        <td>{{h.name}}</td>
+        <td>{{h.loopBack}}</td>
+        <td class="pull-center">
+          <button class="btn btn-primary" title="Edit This Device" (click)="editDevice(h)" style="margin-right: 5px; margin-bottom: 2px;">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="btn btn-primary" title="Delete This Device" (click)="deleteDevice(h)" style="margin-right: 5px; margin-bottom: 2px;">
+            <i class="fa fa-trash-o"></i>
+          </button>
+          <button class="btn btn-primary" title="View This Device" (click)="viewDevice(h)">
+            <i class="fa fa-eye"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+
+<div *ngIf="alert" style="z-index: 1150;" class="alert alert-danger" role="alert">
+  <strong>Holy guacamole!</strong> <br>{{msg}}
+</div>
+
+<div bsModal #deviceModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name0">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Update device
+          <b>{{selectedDevice.name}}</b>
+        </h4>
+        <button type="button" class="close pull-right" (click)="deviceModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="form-group mb-2">
+            <input type="text" class="form-control" [(ngModel)]="selectedDevice.name" name="hdevicename" placeholder="DeviceName " required>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="selectedDevice.loopBack" name="hloopBack" placeholder="LoopBack" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary mb-1" (click)="addUpdateDevice(selectedDevice)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">EDIT INTERFACES for device
+          <b>{{selectedDevice.name}}</b>
+        </h4>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="form-group mb-2">
+            <input type="text" class="form-control" [(ngModel)]="iFace.name" name="aiFaceName" placeholder="Interface" required>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="iFace.ip" name="aip" placeholder="IP" required>
+          </div>
+          <button type="submit" class="btn btn-primary mb-1" (click)="addUpdateInterface(iFace)">Add</button>
+        </form>
+        <br>
+        <div *ngIf="selectedDevice.interfaces && selectedDevice.interfaces.length>0">
+          <h4>Interfaces</h4>
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th scope="col">SR No</th>
+                <th scope="col">Interface</th>
+                <th scope="col">IP</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of selectedDevice.interfaces; let i = index">
+                <th scope="row">{{(i+1)}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.ip}}</td>
+                <td class="pull-center">
+                  <button class="btn btn-primary" title="Edit This Interface" (click)="editInterface(item)" style="margin-right: 5px; margin-bottom: 2px;">
+                    <i class="fa fa-edit"></i>
+                  </button>
+                  <button class="btn btn-primary" title="Delete This Interface" (click)="deleteInterface(item)" style="margin-right: 5px; margin-bottom: 2px;">
+                    <i class="fa fa-trash-o"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="lgModal.hide()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div bsModal #iModal="bs-modal" class="modal fade" tabindex="12" role="dialog" aria-labelledby="dialog-sizes-name2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Update interface
+          <b>{{uiFace.name}}</b>
+        </h4>
+        <button type="button" class="close pull-right" (click)="iModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="form-group mb-2">
+            <input type="text" class="form-control" [(ngModel)]="uiFace.name" name="uiFaceName" placeholder="Interface" required>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input type="text" class="form-control" [(ngModel)]="uiFace.ip" name="uip" placeholder="IP" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary mb-1" (click)="addUpdateInterface(uiFace)">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
