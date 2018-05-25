@@ -1,6 +1,6 @@
 ## InfiLabsTestCode
 
-### Pre Requiestics -
+### Pre requisites -
 	I am uing following configuration - 
 	 > npm -v	-	5.6.0
 	 > ng --version
