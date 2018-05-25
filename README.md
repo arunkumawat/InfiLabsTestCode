@@ -28,13 +28,15 @@
 	
 
 #### Step 1
-create new angular cli project using command-  
-	**ng new InfiLabsTestCode**
+create new angular cli project using command- 
+
+		ng new InfiLabsTestCode
 
 
 #### Step 2
 Move to folder **InfiLabsTestCode** - 
-	**cd InfiLabsTestCode**
+
+	cd InfiLabsTestCode
 
 
 #### Step 3
@@ -48,6 +50,7 @@ install dependent modules which is used in this application. we need -
 
 install seperate using npm install command,
 Or all at once using following command -  
+
 	**npm install bootstrap ngx-bootstrap ngx-pagination font-awesome --save**
 
 
