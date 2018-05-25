@@ -77,4 +77,4 @@ import src folder from https://github.com/arunkumawat/InfiLabsTestCode replace w
 
 #### Step 6
  run project -  **ng serve**
- 
+##### NOTE : if the app is running on 4200 port. use this link to open home/device page- http://localhost:4200/deviceAdmin
