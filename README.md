@@ -17,10 +17,11 @@ Move to folder **InfiLabsTestCode** - **cd InfiLabsTestCode**
 
 #### Step 3
 install dependent modules which is used in this application. we need - 
-    -  bootstrap (v4)
-    -  ngx-bootstrap
-    -  ngx-pagination
-    -  font-awesome
+
+	-  bootstrap (v4)
+	-  ngx-bootstrap
+	-  ngx-pagination
+	-  font-awesome
     
 install seperate using npm install command,
 Or all at once using following command -  **npm install bootstrap ngx-bootstrap ngx-pagination font-awesome --save**
