@@ -55,7 +55,7 @@ Or all at once using following command -
 
 
 #### Step 4
-update angular.json with bootstrap.min.css and font-awesome.css like - 
+update angular.json with https://github.com/arunkumawat/InfiLabsTestCode bootstrap.min.css and font-awesome.css like - 
 
 	"architect": {
         "build": {
@@ -72,3 +72,9 @@ update angular.json with bootstrap.min.css and font-awesome.css like -
 
 
 
+#### Step 5 
+import src folder from https://github.com/arunkumawat/InfiLabsTestCode replace with the exesting one created by cli.
+
+#### Step 6
+ run project -  **ng serve**
+ 
